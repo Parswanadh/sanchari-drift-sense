@@ -1,0 +1,106 @@
+{
+  "dataset_dir": "data/eval_set",
+  "n_pairs": 30,
+  "n_run_failures": 0,
+  "tolerances_px": [
+    3.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0
+  ],
+  "overall": {
+    "n": 30,
+    "mean_error_px": 49.822,
+    "median_error_px": 0.467,
+    "p95_error_px": 378.895,
+    "max_error_px": 444.461,
+    "mean_time_sec": 1.2473,
+    "median_time_sec": 1.241,
+    "p95_time_sec": 1.331,
+    "max_time_sec": 1.3506,
+    "within_tolerance_pct": {
+      "3.0": 86.7,
+      "5.0": 86.7,
+      "10.0": 86.7,
+      "20.0": 86.7,
+      "50.0": 86.7
+    }
+  },
+  "by_architecture": {
+    "dram": {
+      "n": 15,
+      "mean_error_px": 23.71,
+      "median_error_px": 0.455,
+      "p95_error_px": 105.235,
+      "max_error_px": 349.335,
+      "mean_time_sec": 1.2538,
+      "median_time_sec": 1.2413,
+      "p95_time_sec": 1.3422,
+      "max_time_sec": 1.3506,
+      "within_tolerance_pct": {
+        "3.0": 93.3,
+        "5.0": 93.3,
+        "10.0": 93.3,
+        "20.0": 93.3,
+        "50.0": 93.3
+      }
+    },
+    "finfet": {
+      "n": 15,
+      "mean_error_px": 75.934,
+      "median_error_px": 0.499,
+      "p95_error_px": 415.494,
+      "max_error_px": 444.461,
+      "mean_time_sec": 1.2407,
+      "median_time_sec": 1.2393,
+      "p95_time_sec": 1.2735,
+      "max_time_sec": 1.2819,
+      "within_tolerance_pct": {
+        "3.0": 80.0,
+        "5.0": 80.0,
+        "10.0": 80.0,
+        "20.0": 80.0,
+        "50.0": 80.0
+      }
+    }
+  },
+  "by_has_unique_marker": {
+    "True": {
+      "n": 26,
+      "mean_error_px": 0.467,
+      "median_error_px": 0.454,
+      "p95_error_px": 0.651,
+      "max_error_px": 0.978,
+      "mean_time_sec": 1.2469,
+      "median_time_sec": 1.2422,
+      "p95_time_sec": 1.3344,
+      "max_time_sec": 1.3506,
+      "within_tolerance_pct": {
+        "3.0": 100.0,
+        "5.0": 100.0,
+        "10.0": 100.0,
+        "20.0": 100.0,
+        "50.0": 100.0
+      }
+    },
+    "False": {
+      "n": 4,
+      "mean_error_px": 370.631,
+      "median_error_px": 376.207,
+      "p95_error_px": 438.254,
+      "max_error_px": 444.461,
+      "mean_time_sec": 1.2495,
+      "median_time_sec": 1.2394,
+      "p95_time_sec": 1.2756,
+      "max_time_sec": 1.2819,
+      "within_tolerance_pct": {
+        "3.0": 0.0,
+        "5.0": 0.0,
+        "10.0": 0.0,
+        "20.0": 0.0,
+        "50.0": 0.0
+      }
+    }
+  }
+}
