@@ -7,3 +7,5 @@ data/eval_set/images/
 *.log
 .DS_Store
 data/eval_set_v2/
+VIDEO_SCRIPT.md
+.~lock.*#
