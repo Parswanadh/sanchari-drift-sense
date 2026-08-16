@@ -24,13 +24,22 @@ import numpy as np
 # absorb the generator's scale jitter without paying for a full pyramid search.
 SCALE_RANGE = (8.5, 11.5)
 SCALE_STEP = 0.5
-# Rotation band: absorbs the small stage/capture rotation the dataset applies.
-ROT_RANGE = (-5.0, 5.0)
-ROT_STEP = 2.5
+# Rotation band: reference and search are each independently rotated by up
+# to +-5 deg, so their RELATIVE rotation can be up to +-10 deg -- sweep the
+# full combined range, not just one side's.
+ROT_RANGE = (-10.0, 10.0)
+ROT_STEP = 2.0
 # Peak-selection tuning for the periodic-ambiguity tie-break.
 TOP_K_PEAKS = 8
 PEAK_SUPPRESS_MARGIN = 0.08   # how far below the best score we still extract peaks
-NEAR_BEST_MARGIN = 0.03       # how close to the best score counts as "tied"
+NEAR_BEST_MARGIN = 0.002      # how close to the best score counts as "tied"
+# Empirically (see honest-failure analysis), a genuine, findable match's NCC
+# score edge over its nearest periodic-repeat competitor is small but real
+# (~0.003-0.01 in testing) -- 0.03 was swallowing that real signal into
+# "tie" territory and letting the center tie-break override a correct
+# unique match. This margin is tight enough to preserve real signal while
+# still catching genuinely-tied peaks (found to differ by <0.001) in
+# marker-free, fully periodic regions.
 
 
 def load_gray(path):
