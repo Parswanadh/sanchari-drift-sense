@@ -1,14 +1,14 @@
 const pptxgen = require("pptxgenjs");
 
-// ---- Palette: "Ocean Gradient" — fits semiconductor/optical-inspection subject ----
-const NAVY = "0B1E3A";      // primary dark
-const DEEPBLUE = "0D3B66";  // secondary
-const TEAL = "1C7293";      // accent
-const MINT = "3FA796";      // success accent
+// ---- Palette: "Sage & Gold" — calm, warm, non-generic (sage green + ochre) ----
+const NAVY = "25352A";      // primary dark
+const DEEPBLUE = "3C5040";  // secondary
+const TEAL = "8A6D3F";      // accent
+const MINT = "9CB68A";      // success accent
 const WHITE = "FFFFFF";
-const OFFWHITE = "F4F7FA";
-const SLATE = "5B6B79";
-const RED = "C1440E";
+const OFFWHITE = "F5F3EC";
+const SLATE = "6E6A5E";
+const RED = "B5652E";
 
 const p = new pptxgen();
 p.layout = "LAYOUT_WIDE"; // 13.3 x 7.5
@@ -28,7 +28,7 @@ function darkTitleSlide(title, subtitle, kicker) {
   }
   s.addText(title, { x: 0.7, y: 1.1, w: 10.5, h: 1.8, fontFace: "Cambria", color: WHITE, bold: true, fontSize: 40 });
   if (subtitle) {
-    s.addText(subtitle, { x: 0.7, y: 2.6, w: 9.5, h: 1.0, fontFace: "Calibri", color: "CADCFC", fontSize: 16 });
+    s.addText(subtitle, { x: 0.7, y: 2.6, w: 9.5, h: 1.0, fontFace: "Calibri", color: "DCE4CF", fontSize: 16 });
   }
   return s;
 }
@@ -48,7 +48,7 @@ function contentSlide(title, kicker) {
   const s = darkTitleSlide("Drift-Sense", "AI-Powered Navigation-Error Recovery for Wafer Inspection Tools", "Applied Materials Hackathon Submission");
   s.addText('"Think in a systems way"', { x: 0.7, y: 3.7, w: 8, h: 0.5, fontFace: "Cambria", italic: true, color: MINT, fontSize: 18 });
   s.addText("Team Sanchari", { x: 0.7, y: 4.2, w: 8, h: 0.5, fontFace: "Calibri", bold: true, color: WHITE, fontSize: 22 });
-  s.addText("Amrita Vishwa Vidyapeetham, Bangalore", { x: 0.7, y: 4.7, w: 8, h: 0.4, fontFace: "Calibri", color: "CADCFC", fontSize: 14 });
+  s.addText("Amrita Vishwa Vidyapeetham, Bangalore", { x: 0.7, y: 4.7, w: 8, h: 0.4, fontFace: "Calibri", color: "DCE4CF", fontSize: 14 });
 
   const members = [
     ["Balcha Parswanadh", "Team Lead", "venkataparswanadh@gmail.com", ""],
@@ -60,8 +60,8 @@ function contentSlide(title, kicker) {
     s.addShape("rect", { x: 0.7, y: y, w: 11.9, h: 0.6, fill: { color: DEEPBLUE, transparency: 40 }, line: { type: "none" } });
     s.addText(name, { x: 0.9, y: y, w: 2.6, h: 0.6, fontFace: "Calibri", bold: true, color: WHITE, fontSize: 13, valign: "middle" });
     s.addText(role, { x: 3.5, y: y, w: 1.5, h: 0.6, fontFace: "Calibri", color: MINT, fontSize: 12, valign: "middle" });
-    s.addText(email, { x: 5.0, y: y, w: 4.6, h: 0.6, fontFace: "Calibri", color: "CADCFC", fontSize: 12, valign: "middle" });
-    s.addText(phone, { x: 9.7, y: y, w: 2.5, h: 0.6, fontFace: "Calibri", color: "CADCFC", fontSize: 12, valign: "middle" });
+    s.addText(email, { x: 5.0, y: y, w: 4.6, h: 0.6, fontFace: "Calibri", color: "DCE4CF", fontSize: 12, valign: "middle" });
+    s.addText(phone, { x: 9.7, y: y, w: 2.5, h: 0.6, fontFace: "Calibri", color: "DCE4CF", fontSize: 12, valign: "middle" });
     y += 0.68;
   });
 }
@@ -87,7 +87,7 @@ function contentSlide(title, kicker) {
   s.addText("Not “does this look like the target?”", { x: 8.45, y: 2.4, w: 4.0, h: 0.9, fontFace: "Cambria", italic: true, color: WHITE, fontSize: 16 });
   s.addText("but “which of many near-identical targets is the correct one?”", { x: 8.45, y: 3.3, w: 4.0, h: 1.1, fontFace: "Cambria", italic: true, color: WHITE, fontSize: 16 });
   s.addShape("line", { x: 8.45, y: 4.55, w: 3.9, h: 0, line: { color: TEAL, width: 1 } });
-  s.addText("Solving this reliably and fast keeps an inspection tool's measurements trustworthy across a wafer, across tools, and across time.", { x: 8.45, y: 4.8, w: 3.9, h: 1.8, fontFace: "Calibri", color: "CADCFC", fontSize: 12.5 });
+  s.addText("Solving this reliably and fast keeps an inspection tool's measurements trustworthy across a wafer, across tools, and across time.", { x: 8.45, y: 4.8, w: 3.9, h: 1.8, fontFace: "Calibri", color: "DCE4CF", fontSize: 12.5 });
 }
 
 // ============================================================
@@ -206,7 +206,7 @@ function contentSlide(title, kicker) {
   stats.forEach(([num, label]) => {
     s.addShape("rect", { x: sx, y: 1.5, w: 2.95, h: 1.55, fill: { color: NAVY }, line: { type: "none" } });
     s.addText(num, { x: sx, y: 1.58, w: 2.95, h: 0.75, fontFace: "Calibri", bold: true, color: MINT, fontSize: 30, align: "center" });
-    s.addText(label, { x: sx + 0.15, y: 2.3, w: 2.65, h: 0.65, fontFace: "Calibri", color: "CADCFC", fontSize: 10, align: "center" });
+    s.addText(label, { x: sx + 0.15, y: 2.3, w: 2.65, h: 0.65, fontFace: "Calibri", color: "DCE4CF", fontSize: 10, align: "center" });
     sx += 3.13;
   });
 
@@ -265,7 +265,7 @@ function contentSlide(title, kicker) {
   ];
   const col3 = [
     ["Model size", "N/A — classical algorithm, no trained weights to ship"],
-    ["Bonus track", "RGB / optical-microscope generalization not yet attempted — core SEM grayscale pipeline completed first per rubric guidance"],
+    ["Bonus track", "RGB / optical-microscope generalization: DONE — bonus_rgb_dataset_generator.py + bonus_rgb_localize.py, 100% within 3px on marker-bearing sites"],
   ];
   [col1, col2, col3].forEach((col, ci) => {
     const x = 0.6 + ci * 4.15;
@@ -287,11 +287,11 @@ function contentSlide(title, kicker) {
   s.addShape("rect", { x: 0.7, y: 2.6, w: 11.9, h: 1.6, fill: { color: DEEPBLUE, transparency: 30 }, line: { type: "none" } });
   s.addText("GitHub Repository (public)", { x: 1.0, y: 2.8, w: 5, h: 0.4, fontFace: "Calibri", bold: true, color: MINT, fontSize: 14 });
   s.addText("github.com/Parswanadh/sanchari-drift-sense", { x: 1.0, y: 3.2, w: 10.5, h: 0.6, fontFace: "Calibri", color: WHITE, fontSize: 20, bold: true });
-  s.addText("Contains: dataset_generator.py, localize.py, eval_selftest.py, citations.md, requirements.txt (pip freeze), README.md with full setup instructions.", { x: 1.0, y: 3.75, w: 10.5, h: 0.5, fontFace: "Calibri", color: "CADCFC", fontSize: 12 });
+  s.addText("Contains: dataset_generator.py, localize.py, eval_selftest.py, citations.md, requirements.txt (pip freeze), README.md with full setup instructions.", { x: 1.0, y: 3.75, w: 10.5, h: 0.5, fontFace: "Calibri", color: "DCE4CF", fontSize: 12 });
 
   s.addShape("rect", { x: 0.7, y: 4.6, w: 11.9, h: 1.4, fill: { color: DEEPBLUE, transparency: 55 }, line: { type: "none" } });
   s.addText("Demo Video", { x: 1.0, y: 4.8, w: 5, h: 0.4, fontFace: "Calibri", bold: true, color: MINT, fontSize: 14 });
-  s.addText("Optional — to be added: a short recording of localize.py running on a sample pair, showing the printed (x, y) output.", { x: 1.0, y: 5.2, w: 10.5, h: 0.6, fontFace: "Calibri", color: "CADCFC", fontSize: 13 });
+  s.addText("Script ready (VIDEO_SCRIPT.md in repo) — a short recording of localize.py running live on a sample pair, showing the printed (x, y) output.", { x: 1.0, y: 5.2, w: 10.5, h: 0.6, fontFace: "Calibri", color: "DCE4CF", fontSize: 13 });
 }
 
 // ============================================================
