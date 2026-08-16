@@ -3,5 +3,6 @@ __pycache__/
 *.pyc
 data/train/
 data/.smoke_test/
+data/eval_set/images/
 *.log
 .DS_Store

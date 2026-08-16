@@ -201,7 +201,15 @@ def _stamp_site_marker(canvas, cy, cx, rng, extent):
     dx, dy = math.cos(angle) * length / 2.0, math.sin(angle) * length / 2.0
     pt0 = (int(cx - dx), int(cy - dy))
     pt1 = (int(cx + dx), int(cy + dy))
-    thickness = rng.randint(20, 34)   # survives the 10x downsample (~2-3.4px)
+    # Thickness at 20-34 native px (2-3.4px after the 10x downsample) visually
+    # read fine in the reference, but measured DEAD -- the search pipeline's
+    # own Gaussian blur (0.8-2.0 px sigma, in already-downsampled units) sits
+    # at the same scale as a 2-3px feature and erases it, and DRAM's via dots
+    # (up to ~100px native radius) dwarf it for signal mass. 60-90 native px
+    # (6-9px post-downsample) gives a >=3x margin over the blur kernel, which
+    # is the standard rule of thumb for a feature to survive Gaussian
+    # smoothing rather than being smoothed away.
+    thickness = rng.randint(60, 90)
     cv2.line(canvas, pt0, pt1, 1.0, thickness, lineType=cv2.LINE_AA)
 
 

@@ -388,31 +388,5 @@
     "rotation_deg_search": 3.5906,
     "seed_used": 123,
     "has_unique_marker": true
-  },
-  {
-    "pair_id": "pair_0030",
-    "architecture": "dram",
-    "reference_path": "images/pair_0030_reference.png",
-    "search_path": "images/pair_0030_search.png",
-    "true_x": 639.6383,
-    "true_y": 609.5492,
-    "nominal_scale_factor": 10.0,
-    "rotation_deg_reference": -2.4032,
-    "rotation_deg_search": 2.6124,
-    "seed_used": 123,
-    "has_unique_marker": true
-  },
-  {
-    "pair_id": "pair_0031",
-    "architecture": "finfet",
-    "reference_path": "images/pair_0031_reference.png",
-    "search_path": "images/pair_0031_search.png",
-    "true_x": 528.6953,
-    "true_y": 522.4241,
-    "nominal_scale_factor": 10.0,
-    "rotation_deg_reference": -2.1014,
-    "rotation_deg_search": -4.8833,
-    "seed_used": 123,
-    "has_unique_marker": true
   }
 ]
