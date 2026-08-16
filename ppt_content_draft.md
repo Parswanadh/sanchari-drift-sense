@@ -84,15 +84,42 @@ Search image   ───┘    (both images)     scale+rotation ─► cv2.match
 
 ---
 
-## Slide 6 — Results (PLACEHOLDER — DO NOT FILL WITH INVENTED NUMBERS)
+## Slide 6 — Results
 
-> Insert from `results/eval_summary.json` once the full evaluation run completes. Do not estimate or guess these numbers — copy them verbatim from that file.
+**30-pair self-evaluation (mixed DRAM/FinFET, `data/eval_set`, seed 123) — from `results/eval_summary.json`:**
 
-- [ ] Accuracy: % of 30+ test pairs landing within tolerance — report at ≤3px, ≤5px, and ≤10px thresholds
-- [ ] Mean / median / p95 pixel error across all test pairs
-- [ ] Computation time per 1000x1000 image pair (mean / median / p95)
-- [ ] One **SUCCESS** visual: `results/success_example.png` (reference | search | predicted location | true location)
-- [ ] One **HONEST FAILURE** visual: `results/failure_example.png` + root-cause note from `results/failure_notes.md` (expected: a highly periodic array region where two correlation peaks are near-tied)
+| Metric | Overall | DRAM (n=15) | FinFET (n=15) |
+|---|---|---|---|
+| Accuracy within 3px / 5px / 10px / 20px / 50px | **86.7%** (all thresholds identical) | 93.3% | 80.0% |
+| Mean pixel error | 49.8px | 23.7px | 75.9px |
+| Median pixel error | 0.47px | 0.46px | 0.50px |
+| p95 pixel error | 378.9px | 105.2px | 415.5px |
+
+**Computation time per 1000×1000 pair:** mean 1.25s, median 1.24s, p95 1.33s, max 1.35s (CPU only).
+
+**Broken down by whether the site had a locally-unique marker** (see Slide 5 / `has_unique_marker`):
+
+| | n | Accuracy within 3px | Mean error |
+|---|---|---|---|
+| Marker present | 26 | **100%** | 0.47px |
+| Marker-free (purely periodic) | 4 | 0% | 370.6px |
+
+The all-or-nothing split is the headline finding: the algorithm is essentially exact
+(sub-pixel to ~1px) whenever the reference site has *any* locally-distinguishing content, and
+fails cleanly and predictably when it doesn't — which is precisely the "genuinely hard periodic
+region" case the problem statement calls out.
+
+- **SUCCESS visual:** `results/success_example.png` — reference | search, with true location
+  (green) and predicted location (red) overlaid; error 0.30px.
+- **HONEST FAILURE visual:** `results/failure_example.png` + `results/failure_notes.md` —
+  `pair_0019` (FinFET, no site marker), true=(675.0, 599.6), predicted=(361.0, 285.0),
+  error=444.5px, confidence score 0.626, `periodic_ambiguity=True`. Root cause: with no
+  locally-unique feature, the reference crop sits in a purely periodic region where many lattice
+  repeats are statistically indistinguishable from the true site under sensor noise — Applied
+  Materials' own closest-to-center tie-break only recovers the *correct* site when the true site
+  happens to be the center-closest repeat, which it wasn't here. This is a fundamental
+  information-theoretic limit of matching a single crop against a periodic layout, not a bug in
+  the search/scale/rotation sweep.
 
 ---
 
@@ -102,9 +129,9 @@ Search image   ───┘    (both images)     scale+rotation ─► cv2.match
 
 **Hardware used for development:** Local machine with an NVIDIA RTX 4070 Laptop GPU available but **not used** — the localization pipeline is classical CPU-only computer vision (no model training), so GPU acceleration wasn't needed for the core deliverable.
 
-**Dataset generation time:** TODO — insert measured time per pair from the final generation run.
+**Dataset generation time:** ≈0.8s per pair (30 pairs, mixed DRAM/FinFET, generated in 24.0s).
 
-**Localization inference time per pair:** TODO — insert from `results/eval_summary.json` (mean/median/p95 `time_sec`).
+**Localization inference time per pair:** mean 1.25s, median 1.24s, p95 1.33s, max 1.35s (from `results/eval_summary.json`, n=30, CPU only).
 
 **Model size:** N/A — classical algorithm, no trained weights.
 
